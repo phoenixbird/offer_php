@@ -37,3 +37,24 @@ $arr=[
 ];
 var_dump(findInMatrix(7,$arr));
 var_dump(findInMatrix(5,$arr));
+
+/*
+ * 时间复杂度最低
+ */
+function find_in_array($search,$arr){
+    //二维数组有多少行，多少列
+    $count_row=count($arr);
+    $count_col=count($arr[0]);
+    $i=0;
+    $j=$count_col-1;
+    while ($i<$count_row && $j>=0){
+        if($arr[$i][$j]>$search){
+            $j--;
+        }elseif ($arr[$i][$j]<$search){
+            $i++;
+        }else{
+            return true;
+        }
+    }
+    return false;
+}
