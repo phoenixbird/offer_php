@@ -25,5 +25,38 @@ function cutRope($length){
     return pow(3,$len_3)*pow(2,$len_2);
 
 }
-$length=8;
-var_dump(cutRope($length));
+//$length=5;
+//var_dump(cutRope($length));
+
+//动态规划思想做一遍，时间复杂度比贪婪算法大很多
+function cutRope2($length){
+    if($length<2){
+        return 0;
+    }elseif ($length==2){
+        return 1;
+    }elseif ($length==3){
+        return 2;
+    }
+    //动态规划$len_collect[$i]表示长度为$i的绳子，任意分割后的分段长度积的最大值
+    $len_collect=[];
+    $len_collect[0]=0;
+    $len_collect[1]=1;
+    $len_collect[2]=2;
+    //长度为3的绳子最大积是3，不分的情况，分的话为2
+    $len_collect[3]=3;
+    //从4开始进行迭代
+    for($i=4;$i<=$length;$i++){
+        $max=0;
+        for ($j=1;$j<=intval($i/2);$j++){
+            $len_collects=$len_collect[$j]*$len_collect[$i-$j];
+            if($max<$len_collects){
+                $max=$len_collects;
+            }
+            $len_collect[$i]=$max;
+        }
+    }
+    $max=$len_collect[$length];
+    return $max;
+}
+$length=5;
+var_dump(cutRope2($length));
