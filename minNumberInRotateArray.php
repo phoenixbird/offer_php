@@ -91,6 +91,7 @@ function minNumberInRotateArray($rotateArray)
 //2）当数组中出现数字小于第一个递增数组的第一个数字时候 就是要找的位置
 //综上2）是有标杆的 1）有两个未知
 
+//时间复杂度O(N)比二分法大
 function minNumberInRotateArray2($rotateArray){
     if (empty($rotateArray)){
         return null;
